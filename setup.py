@@ -26,7 +26,7 @@ from torch.utils.cpp_extension import BuildExtension, CUDAExtension, CUDA_HOME
 
 HAS_SM80 = False
 HAS_SM86 = False
-HAS_SM89 = False
+HAS_SM89 = True
 HAS_SM90 = False
 HAS_SM120 = False
 
@@ -67,20 +67,7 @@ def get_nvcc_cuda_version(cuda_dir: str) -> Version:
     return nvcc_cuda_version
 
 # Iterate over all GPUs on the current machine. Also you can modify this part to specify the architecture if you want to build for specific GPU architectures.
-compute_capabilities = set()
-device_count = torch.cuda.device_count()
-for i in range(device_count):
-    major, minor = torch.cuda.get_device_capability(i)
-    if major < 8:
-        warnings.warn(f"skipping GPU {i} with compute capability {major}.{minor}")
-        continue
-    compute_capabilities.add(f"{major}.{minor}")
-
-nvcc_cuda_version = get_nvcc_cuda_version(CUDA_HOME)
-if not compute_capabilities:
-    raise RuntimeError("No GPUs found. Please specify the target GPU architectures or build on a machine with GPUs.")
-else:
-    print(f"Detect GPUs with compute capabilities: {compute_capabilities}")
+compute_capabilities = {"8.9"}
 
 # Validate the NVCC CUDA version.
 if nvcc_cuda_version < Version("12.0"):
