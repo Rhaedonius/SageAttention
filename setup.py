@@ -68,6 +68,7 @@ def get_nvcc_cuda_version(cuda_dir: str) -> Version:
 
 # Iterate over all GPUs on the current machine. Also you can modify this part to specify the architecture if you want to build for specific GPU architectures.
 compute_capabilities = {"8.9"}
+nvcc_cuda_version = get_nvcc_cuda_version(CUDA_HOME)
 
 # Validate the NVCC CUDA version.
 if nvcc_cuda_version < Version("12.0"):
