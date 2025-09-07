@@ -28,7 +28,7 @@ jobs:
         env:
           CIBW_BEFORE_ALL_WINDOWS: bash install_cuda.sh
           CIBW_BEFORE_BUILD_WINDOWS: uv pip install "torch>=2.3.0" "triton-windows>=3.0.0" --torch-backend=cu128
-          CIBW_BUILD_FRONTEND: build[uv][args:"--no-isolation"]
+          CIBW_BUILD_FRONTEND: "build[uv]; args: --no-isolation"
         #   ...
 
       - uses: actions/upload-artifact@v4
