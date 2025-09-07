@@ -26,8 +26,9 @@ jobs:
         run: python -m cibuildwheel --output-dir wheelhouse
         # to supply options, put them in 'env', like:
         env:
+          CIBW_BUILD: cp312-win_amd64
           CIBW_BEFORE_ALL_WINDOWS: bash install_cuda.sh
-          CIBW_BEFORE_BUILD_WINDOWS: uv pip install "torch>=2.3.0+cu128" "triton-windows>=3.0.0" --torch-backend=cu128
+          CIBW_BEFORE_BUILD_WINDOWS: uv pip install "torch>=2.3.0" "triton-windows>=3.0.0" --torch-backend=cu128
           CIBW_BUILD_FRONTEND: "build[uv]; args: --no-isolation"
         #   ...
 
