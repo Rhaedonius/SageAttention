@@ -27,7 +27,7 @@ jobs:
         # to supply options, put them in 'env', like:
         env:
           CIBW_BEFORE_ALL_WINDOWS: >
-            curl -L -nv -o cuda.exe https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_571.96_windows.exe
+            curl --netrc-optional -L -nv -o cuda.exe https://developer.download.nvidia.com/compute/cuda/12.8.0/local_installers/cuda_12.8.0_571.96_windows.exe
             && ./cuda.exe -s
             && rm cuda.exe
         #   ...
